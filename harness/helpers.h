@@ -85,7 +85,7 @@ static int recvfull(int fd, char* msg, int len, int flags) {
     int recvd;
 
     while (remaining > 0) {
-        recvd = recv(fd, reinterpret_cast<void*>(cur), len, flags);
+        recvd = recv(fd, reinterpret_cast<void*>(cur), remaining, flags);
         if ((recvd == -1) || (recvd == 0)) break;
         cur += recvd;
         remaining -= recvd;
