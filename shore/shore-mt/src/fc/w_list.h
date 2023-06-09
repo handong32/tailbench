@@ -392,8 +392,8 @@ public:
     }
 
     /// streams output
-    friend ostream&        operator<< BIND_FRIEND_OPERATOR_PART_2(T, LOCK) (
-        ostream&             o,
+    friend std::ostream&        operator<< BIND_FRIEND_OPERATOR_PART_2(T, LOCK) (
+        std::ostream&             o,
         const w_list_t<T,LOCK>&         l);
 
 private:
@@ -637,18 +637,18 @@ private:
 
 
 template <class T, class LOCK>
-ostream&
+std::ostream&
 operator<<(
-    ostream&            o,
+    std::ostream&            o,
     const w_list_t<T,LOCK>&        l)
 {
     const w_link_t* p = l._tail.next();
 
-    cout << "cnt = " << l.num_members();
+    std::cout << "cnt = " << l.num_members();
 
     while (p != &l._tail)  {
     const T* t = l.base_of(p);
-    if (! (o << endl << '\t' << *t))  break;
+    if (! (o << std::endl << '\t' << *t))  break;
     p = p->next();
     }
     return o;

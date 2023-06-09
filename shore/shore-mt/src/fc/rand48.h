@@ -66,6 +66,8 @@ Rome Research Laboratory Contract No. F30602-97-2-0247.
 typedef w_base_t::int8_t signed48_t;
 typedef w_base_t::uint8_t unsigned48_t;
 
+using namespace std;
+
 // used by testers (in tests/ and smsh).  Not operators because that would conflict
 // with the std:: operators for unsigned ints, alas.
 #include <fstream>

@@ -233,8 +233,8 @@ private:
     /*
      *  streams
      */
-    friend ostream&             operator<<(
-        ostream&                    o,
+    friend std::ostream&             operator<<(
+        std::ostream&                    o,
         const w_rc_t&                obj);
 
 private:
@@ -618,7 +618,7 @@ w_rc_t::sys_err_num() const
 #define RC_APPEND_MSG(rc, m)                \
 do {                            \
     w_ostrstream os;                    \
-    os  m << ends;                    \
+    os  m << std::ends;                    \
     rc->append_more_info_msg(os.c_str());        \
 } while (0)
 

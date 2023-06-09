@@ -364,7 +364,7 @@ void    stime_t::gettime()
 }
 
 
-ostream    &stime_t::print(ostream &s) const
+std::ostream    &stime_t::print(std::ostream &s) const
 {
     ctime(s);
 
@@ -378,7 +378,7 @@ ostream    &stime_t::print(ostream &s) const
 }
 
 
-ostream &stime_t::ctime(ostream &s) const
+std::ostream &stime_t::ctime(std::ostream &s) const
 {
     /* the second field of the time structs should be a time_t */
     time_t    kludge = _time.st_tod;
@@ -403,7 +403,7 @@ ostream &stime_t::ctime(ostream &s) const
 }
 
 
-static void factor_print(ostream &s, long what)
+static void factor_print(std::ostream &s, long what)
 {
     struct {
         const char    *label;
@@ -436,7 +436,7 @@ static void factor_print(ostream &s, long what)
 }
 
 
-ostream    &sinterval_t::print(ostream &s) const
+std::ostream    &sinterval_t::print(std::ostream &s) const
 {
     factor_print(s, _time.st_tod);
 
@@ -452,13 +452,13 @@ ostream    &sinterval_t::print(ostream &s) const
 }
 
 
-ostream &operator<<(ostream &s, const stime_t &t)
+std::ostream &operator<<(std::ostream &s, const stime_t &t)
 {
     return t.print(s);
 }
 
 
-ostream &operator<<(ostream &s, const sinterval_t &t)
+std::ostream &operator<<(std::ostream &s, const sinterval_t &t)
 {
     return t.print(s);
 }

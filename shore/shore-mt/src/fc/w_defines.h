@@ -161,7 +161,7 @@ Rome Research Laboratory Contract No. F30602-97-2-0247.
 #endif
 
 #include <sys/types.h>
-using namespace std;
+//using namespace std;
 
 // avoid nasty bus errors...
 template<class T>

@@ -187,11 +187,11 @@ Rome Research Laboratory Contract No. F30602-97-2-0247.
 
 #   define BIND_FRIEND_OPERATOR_PART_1(TYP,L,TMPLa,TMPLb) \
     template <class TYP, class L> \
-    ostream & operator<<(ostream&o, const TMPLa,TMPLb& l);
+    std::ostream & operator<<( std::ostream&o, const TMPLa,TMPLb& l);
 
 #   define BIND_FRIEND_OPERATOR_PART_1B(TYP1,TYP3, TYP2,TMPLa,TMPLc,TMPLb) \
     template <class TYP1, class TYP3, class TYP2> \
-                ostream & operator<<(ostream&o, const TMPLa,TMPLc,TMPLb& l);
+                 std::ostream & operator<<( std::ostream&o, const TMPLa,TMPLc,TMPLb& l);
 
 #   define BIND_FRIEND_OPERATOR_PART_2(TYP, L)\
     <TYP, L>
@@ -223,11 +223,11 @@ Rome Research Laboratory Contract No. F30602-97-2-0247.
 #ifdef __SUNPRO_CC
 #   define BIND_FRIEND_OPERATOR_PART_1(TYP,L,TMPLa,TMPLb) \
     template <class TYP, class L> \
-    ostream & operator<<(ostream&o, const TMPLa,TMPLb& l);
+    std::ostream & operator<<(std::ostream&o, const TMPLa,TMPLb& l);
 
 #   define BIND_FRIEND_OPERATOR_PART_1B(TYP1,TYP3, TYP2,TMPLa,TMPLc,TMPLb) \
     template <class TYP1, class TYP3, class TYP2> \
-    ostream & operator<<(ostream&o, const TMPLa,TMPLc,TMPLb& l);
+    std::ostream & operator<<(std::ostream&o, const TMPLa,TMPLc,TMPLb& l);
 
 #   define BIND_FRIEND_OPERATOR_PART_2(TYP,L)\
     <TYP,L>

@@ -166,9 +166,9 @@ public:
     uint4_t                     num_members() const { return _cnt; }
 
     /// Standard ostream operator, despite the macro here (in \ref w_workaround.h)
-    friend ostream&             operator<< 
+    friend std::ostream&             operator<< 
                                      BIND_FRIEND_OPERATOR_PART_2B(T,LOCK,K) (
-        ostream&                     o,
+        std::ostream&                     o,
         const w_hash_t<T,LOCK,K>&        obj);
     
 
@@ -261,8 +261,8 @@ private:
 
 
 template <class T, class LOCK, class K>
-ostream& operator<<(
-    ostream&                        o,
+std::ostream& operator<<(
+    std::ostream&                        o,
     const w_hash_t<T,LOCK, K>&        h)
 {
     for (int i = 0; i < h._top; i++)  {
@@ -271,7 +271,7 @@ ostream& operator<<(
         while (iter.next())  {
             o << h._keyof(*iter.curr()) << " ";
         }
-        o << endl;
+        o << std::endl;
     }
     return o;
 }

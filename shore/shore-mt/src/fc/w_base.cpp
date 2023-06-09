@@ -104,8 +104,8 @@ const w_base_t::int8_t   w_base_t::int8_min =
                 LONGLONGCONSTANT(0x80000000);
 #endif
 
-ostream&
-operator<<(ostream& o, const w_base_t&)
+std::ostream&
+operator<<(std::ostream& o, const w_base_t&)
 {
     w_base_t::assert_failed("w_base::operator<<() called", __FILE__, __LINE__);
     return o;
@@ -117,21 +117,21 @@ w_base_t::assert_failed(
     const char*        file,
     uint4_t        line)
 {
-    stringstream os;
+    std::stringstream os;
     /* make the error look something like an RC in the meantime. */
-    os << "assertion failure: " << desc << endl
+    os << "assertion failure: " << desc << std::endl
         << "1. error in "
         << file << ':' << line
-        << " Assertion failed" << endl
-        << "\tcalled from:" << endl
+        << " Assertion failed" << std::endl
+        << "\tcalled from:" << std::endl
         << "\t0) " << file << ':' << line
-        << endl << ends;
+        << std::endl << std::ends;
     fprintf(stderr, "%s", os.str().c_str());
     abort();
 }
 
 
-typedef ios::fmtflags  fmtflags;
+typedef std::ios::fmtflags  fmtflags;
 
 #include <w_strstream.h>
 
@@ -198,7 +198,7 @@ w_base_t::is_infinite(const f8_t x)
 #elif defined(MacOSX) && W_GCC_THIS_VER >= W_GCC_VER(3,0)
     value = !finite(x) && !__isnand(x);
 #else
-    value = !finite(x) && !isnan(x);
+    value = !finite(x) && !std::isnan(x);
 #endif
     return value;
 }
@@ -212,7 +212,7 @@ w_base_t::is_nan(const f8_t x)
 #elif defined(MacOSX) && W_GCC_THIS_VER >= W_GCC_VER(3,0)
     value = __isnand(x);
 #else
-    value = isnan(x);
+    value = std::isnan(x);
 #endif
     return value;
 }
@@ -228,8 +228,8 @@ w_base_t::is_infinite_or_nan(const f8_t x)
 
 void    w_base_t::abort()
 {
-    cout.flush();
-    cerr.flush();
+    std::cout.flush();
+    std::cerr.flush();
     ::abort();
 }
 
@@ -249,7 +249,7 @@ PURE_VIRTUAL
     /* Just in case the iostreams generate another error ... */
     static    bool    called = false;
     if (!called)
-        cerr << "** Pure virtual function called" << endl;
+        std::cerr << "** Pure virtual function called" << std::endl;
     called = true;
 
     w_base_t::abort();

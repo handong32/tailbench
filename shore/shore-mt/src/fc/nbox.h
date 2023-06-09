@@ -50,7 +50,7 @@ Rome Research Laboratory Contract No. F30602-97-2-0247.
 * This is used in the API for R*-trees.
 */ 
 class nbox_t {
-    friend ostream& operator<<(ostream& os, const nbox_t& box);
+    friend std::ostream& operator<<(std::ostream& os, const nbox_t& box);
 
 public:
     typedef w_base_t::int4_t int4_t;
@@ -128,8 +128,8 @@ public:
     int hcmp(const nbox_t& other, const nbox_t& universe, 
             int level=0) const; // hilbert value comparison
 
-    void print(ostream &, int level) const;
-    void draw(int level, ostream &DrawFile, const nbox_t& CoverAll) const;
+    void print(std::ostream &, int level) const;
+    void draw(int level, std::ostream &DrawFile, const nbox_t& CoverAll) const;
 
     /**\brief Area of a box
      * Return value:

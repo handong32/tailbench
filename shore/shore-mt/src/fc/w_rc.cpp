@@ -114,8 +114,8 @@ w_rc_t::push(
 void
 w_rc_t::fatal()
 {
-    stringstream s;
-    s << *this << endl;
+    std::stringstream s;
+    s << *this << std::endl;
     fprintf(stderr, "FATAL ERROR: %s\n", s.str().c_str());
     w_base_t::abort();
 }
@@ -133,14 +133,14 @@ w_rc_t::add_trace_info(
 void 
 w_rc_t::error_not_checked()
 {
-    cerr << "Error not checked: rc=" << (*this) << endl;
+    std::cerr << "Error not checked: rc=" << (*this) << std::endl;
     if(unchecked_is_fatal)
         W_FATAL(fcINTERNAL);
 }
 
-ostream&
+std::ostream&
 operator<<(
-    ostream&            o,
+    std::ostream&            o,
     const w_rc_t&       obj)
 {
     return o << *obj;

@@ -231,17 +231,17 @@ static enum states table_base10[no_charclass][no_state] =
 #ifdef __GNUG__
 #define    IOS_BACK(stream,ch)    (void) stream.unget()
 #else
-#define    IOS_BACK(stream,ch)    (void) stream.seekg(-1, ios::cur)
+#define    IOS_BACK(stream,ch)    (void) stream.seekg(-1, std::ios::cur)
 #endif
 
 #if defined( __GNUG__) 
-#define    IOS_FAIL(stream)    stream.setstate(ios::failbit)
+#define    IOS_FAIL(stream)    stream.setstate(std::ios::failbit)
 #else
-#define    IOS_FAIL(stream)    stream.setstate(ios_base::failbit)
+#define    IOS_FAIL(stream)    stream.setstate(std::ios_base::failbit)
 #endif
 
 /* XXX shouldn't replicate this from somewhere else */
-typedef ios::fmtflags  ios_fmtflags;
+typedef std::ios::fmtflags  ios_fmtflags;
 
 /*
  *  expect string [+-][0[x]][0-9a-fA-F]+
@@ -272,9 +272,9 @@ w_base_t::uint8_t    thresh_oct_signed =
  * This is *way* slower than strtoull and strtoll, as it is written.
  */
 
-istream &
+std::istream &
 w_base_t::_scan_uint8(
-    istream& i, 
+    std::istream& i, 
     w_base_t::uint8_t &u8, 
     bool chew_white, // true if coming from istream operator
     bool is_signed, // if true, we have to return an error for overflow
@@ -291,7 +291,7 @@ w_base_t::_scan_uint8(
     int        base=0;
     bool     skip_white = true;
     states     s = start;
-    streampos   tell_start = i.tellg();
+    std::streampos   tell_start = i.tellg();
     int        chewamt = chew_white? 1 : 0; 
     XTABLE     *table=0;
 
@@ -299,26 +299,26 @@ w_base_t::_scan_uint8(
     {
     // Get the base from the stream
     ios_fmtflags old = i.flags();
-    skip_white = ((old & ios::skipws) != 0);
-    switch(old & ios::basefield) {
+    skip_white = ((old & std::ios::skipws) != 0);
+    switch(old & std::ios::basefield) {
         case 0:
         base = 0;
         table = &table_unknown;
         break;
 
-        case ios::hex:
+        case std::ios::hex:
         base = 4; // shift by this
         table = &table_base16;
         thresh = is_signed?  thresh_hex_signed : thresh_hex_unsigned;
         break;
 
-        case ios::oct:
+        case std::ios::oct:
         base = 3; // shift by this
         table = &table_base8;
         thresh = is_signed?  thresh_oct_signed : thresh_oct_unsigned;
         break;
 
-        case ios::dec:
+        case std::ios::dec:
         base = 10; // multiply by this
         table = &table_base10;
         thresh = is_signed?  thresh_dec_signed : thresh_dec_unsigned;

@@ -169,8 +169,8 @@ public:
     /* the Current time */
     static    stime_t now();
 
-    ostream    &print(ostream &s) const;
-    ostream &ctime(ostream &s) const;
+    std::ostream    &print(std::ostream &s) const;
+    std::ostream &ctime(std::ostream &s) const;
 };
 
 
@@ -193,12 +193,12 @@ public:
     sinterval_t(long time) : stime_t(time) { }
     sinterval_t(double time) : stime_t(time) { }
 
-    ostream    &print(ostream &s) const;
+    std::ostream    &print(std::ostream &s) const;
 };
 
 
-extern ostream &operator<<(ostream &s, const stime_t &t);
-extern ostream &operator<<(ostream &s, const sinterval_t &t);
+extern std::ostream &operator<<(std::ostream &s, const stime_t &t);
+extern std::ostream &operator<<(std::ostream &s, const sinterval_t &t);
 
 /**\endcond skip */
 

@@ -149,7 +149,7 @@ public:
 
         // ensure it is nul-terminated
         if (s[last] != '\0') {
-            *this << ends;
+            *this << std::ends;
 
             // it could move with the addition
             s = str();

@@ -18,7 +18,8 @@ echo configure args: $* > tmpcfg.txt
 ## 'foreign' says that we don't follow all GNU standards
 ## For some reason, dependency tracking is not enabled by default
 ## on our Solaris box.
-AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+#AM_INIT_AUTOMAKE([-Wall -Werror foreign])
+AM_INIT_AUTOMAKE([-Wall foreign])
 
 ## This package uses an assembler.
 ## Define CCAS and CCASFLAGS 

@@ -99,7 +99,7 @@ static void w_error_t_no_error_code()
         w_error_t*    p = my; \
         while(p) { \
         if (p == p->_next || my == p->_next) { \
-            cerr << "Recursive error detected:" << endl << *this << endl;\
+            cerr << "Recursive error detected:" << std::endl << *this << std::endl;\
             W_FATAL(fcINTERNAL); \
         } \
         p = p->_next; \
@@ -360,7 +360,7 @@ void format_unix_error(int err, char *buf, int bufsize)
     buf[bufsize-1] = '\0';
 }
 
-ostream& w_error_t::print_error(ostream &o) const
+std::ostream& w_error_t::print_error(std::ostream &o) const
 {
     if (this == w_error_t::no_error) {
         return o << "no error";
@@ -374,20 +374,20 @@ ostream& w_error_t::print_error(ostream &o) const
         o << cnt << ". error in " << f << ':' << p->line << " ";
         if(cnt > 1) {
             if(p == this) {
-                o << "Error recurses, stopping" << endl;
+                o << "Error recurses, stopping" << std::endl;
                 break;
             } 
             if(p->_next == p) {
-                o << "Error next is same, stopping" << endl;
+                o << "Error next is same, stopping" << std::endl;
             break;
             }
         }
         if(cnt > 20) {
-            o << "Error chain >20, stopping" << endl;
+            o << "Error chain >20, stopping" << std::endl;
             break;
         }
         o << p->error_string(p->err_num);
-        o << " [0x" << hex << p->err_num << dec << "]";
+        o << " [0x" << std::hex << p->err_num << std::dec << "]";
 
         /* Eventually error subsystems will have their own interfaces
            here. */
@@ -400,19 +400,19 @@ ostream& w_error_t::print_error(ostream &o) const
             } 
         }
 
-        o << endl;
+        o << std::endl;
 
         if (more_info_msg)  {
-            o << "\tadditional information: " << more_info_msg << endl;
+            o << "\tadditional information: " << more_info_msg << std::endl;
         }
 
         if (p->_trace_cnt)  {
-            o << "\tcalled from:" << endl;
+            o << "\tcalled from:" << std::endl;
             for (unsigned i = 0; i < p->_trace_cnt; i++)  {
                 f = strrchr(p->_trace_file[i], '/');
                 f ? ++f : f = p->_trace_file[i];
                 o << "\t" << i << ") " << f << ':' 
-                  << p->_trace_line[i] << endl;
+                  << p->_trace_line[i] << std::endl;
             }
         }
     }
@@ -420,13 +420,13 @@ ostream& w_error_t::print_error(ostream &o) const
     return o;
 }
 
-ostream &operator<<(ostream &o, const w_error_t &obj)
+std::ostream &operator<<(std::ostream &o, const w_error_t &obj)
 {
         return obj.print_error(o);
 }
 
-ostream &
-w_error_t::print(ostream &out)
+std::ostream &
+w_error_t::print(std::ostream &out)
 {
     for (unsigned i = 0; i < _nreg; i++)  {
         err_num_t first    = _range_start[i]->err_num;
@@ -436,7 +436,7 @@ w_error_t::print(ostream &out)
             const char *c = module_name(j);
             const char *s = error_string(j);
 
-            out <<  c << ":" << j << ":" << s << endl;
+            out <<  c << ":" << j << ":" << s << std::endl;
         }
     }
         

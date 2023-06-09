@@ -117,7 +117,7 @@ public:
     void                         claim();
     void                         verify_owner() const;
     
-    ostream                      &print_error(ostream &o) const;
+    std::ostream                      &print_error(std::ostream &o) const;
 
 #if USE_BLOCK_ALLOC_FOR_W_ERROR_T
     void operator delete(void* p);
@@ -193,14 +193,14 @@ private:
 public:
         // make public so it  can be exported to client side
     static const info_t          error_info[];
-    static ostream &             print(ostream &out);
+    static std::ostream &             print(std::ostream &out);
 private:
     // disabled
     static void init_errorcodes(); 
 
 };
 
-extern ostream  &operator<<(ostream &o, const w_error_t &obj);
+extern std::ostream  &operator<<(std::ostream &o, const w_error_t &obj);
 
 #ifdef SM_THREAD_SAFE_ERRORS 
 #include <pthread.h>

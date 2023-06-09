@@ -47,7 +47,7 @@ vtable_row_t::set_uint(int a, unsigned int v) {
     // entry for 'a'
     w_ostrstream o(_insert_attribute(a), value_size());
     // Create the entry for a
-    o << v << ends;
+    o << v << std::ends;
     _inserted(a);
 }
 
@@ -58,7 +58,7 @@ vtable_row_t::set_base(int a, w_base_t::base_float_t v) {
     // check attribute not already set
     w_assert9(strlen(_get_const(a)) == 0); 
     w_ostrstream o(_insert_attribute(a), value_size());
-    o << v << ends;
+    o << v << std::ends;
     _inserted(a);
 }
 
@@ -69,7 +69,7 @@ vtable_row_t::set_base(int a,  w_base_t::base_stat_t v) {
     // check attribute not already set
     w_assert9(strlen(_get_const(a)) == 0); 
     w_ostrstream o(_insert_attribute(a), value_size());
-    o << v << ends;
+    o << v << std::ends;
     _inserted(a);
 }
 
@@ -78,7 +78,7 @@ vtable_row_t::set_int(int a, int v) {
     w_assert1(a < N);
     w_assert9(strlen(_get_const(a)) == 0); 
     w_ostrstream o(_insert_attribute(a), value_size());
-    o << v << ends;
+    o << v << std::ends;
     _inserted(a);
 }
 
@@ -138,16 +138,16 @@ vtable_row_t::_inserted(int a) {
     w_assert0(_in_use <= N); // still. Origin 0
 }
 
-ostream& 
-vtable_row_t::operator<<(ostream &o) 
+std::ostream& 
+vtable_row_t::operator<<(std::ostream &o) 
 {
 
     for(int i=0; i<_in_use; i++) {
         if(strlen(_get_const(i)) > 0) {
-            o <<  i << ": " << _get_const(i) <<endl;
+            o <<  i << ": " << _get_const(i) <<std::endl;
         }
     }
-    o <<  endl;
+    o <<  std::endl;
     return o;
 }
 
@@ -191,13 +191,13 @@ vtable_t::filled_one()
     w_assert9(_rows_filled <= _rows);
 }
 
-ostream& 
-vtable_t::operator<<(ostream &o) const {
+std::ostream& 
+vtable_t::operator<<(std::ostream &o) const {
 
     for(int i=0; i<_rows; i++) {
         _get_row(i)->operator<<(o) ;
     }
-    o <<  endl;
+    o <<  std::endl;
     return o;
 }
 

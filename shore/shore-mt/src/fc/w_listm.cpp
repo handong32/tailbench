@@ -63,11 +63,11 @@ w_link_t::detach()
     return this;
 }
 
-ostream&
-operator<<(ostream& o, const w_link_t& n)  
+std::ostream&
+operator<<(std::ostream& o, const w_link_t& n)  
 {
-    o << "_list = " << n.member_of() << endl;
-    o << "_next = " << n.next() << endl;
+    o << "_list = " << n.member_of() << std::endl;
+    o << "_next = " << n.next() << std::endl;
     o << "_prev = " << n.prev();
     return o;
 }
@@ -75,8 +75,8 @@ operator<<(ostream& o, const w_link_t& n)
 void
 w_list_base_t::dump()
 {
-    cout << "_tail = " << _tail << endl;
-    cout << "_cnt = " << _cnt << endl;
-    cout << "_adj = " << _adj << endl;
+    std::cout << "_tail = " << _tail << std::endl;
+    std::cout << "_cnt = " << _cnt << std::endl;
+    std::cout << "_adj = " << _adj << std::endl;
 }
 

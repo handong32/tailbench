@@ -134,7 +134,7 @@ bool nbox_t::empty() const
     return (area() < 0.0);
 }
 
-void nbox_t::print(ostream &o, int level) const
+void nbox_t::print(std::ostream &o, int level) const
 {
     REGISTER int i, j;
     for (j = 0; j < 5 - level; j++) o << "\t";
@@ -148,23 +148,23 @@ void nbox_t::print(ostream &o, int level) const
         for (i=1; i<dim; i++) {
             o << "," << array[i] ;
         }
-        o << endl;
+        o << std::endl;
 
         for (j = 0; j < 5 - level; j++) o << "\t";
         o << array[0+dim] ;
         for (i=1; i<dim; i++) {
             o << "," << array[i+dim] ;
         }
-        o << endl;
+        o << std::endl;
     }
-    if(dim == 0) { o << "<NULL>" <<endl; }
+    if(dim == 0) { o << "<NULL>" <<std::endl; }
 }
 
 //
 // for draw gremlin picture only
 //
 
-void nbox_t::draw(int level, ostream &DrawFile, const nbox_t& CoverAll) const
+void nbox_t::draw(int level, std::ostream &DrawFile, const nbox_t& CoverAll) const
 {
     /*static int seed = 0;*/ //dsm
     int thick;
@@ -236,7 +236,7 @@ bool nbox_t::operator==(const nbox_t& other) const
     return true;
 }
 
-ostream& operator<<(ostream& os, const nbox_t& box)
+std::ostream& operator<<(std::ostream& os, const nbox_t& box)
 {
    REGISTER int i;
 
@@ -256,7 +256,7 @@ ostream& operator<<(ostream& os, const nbox_t& box)
         }
         os << ">";
     }
-    os << "] " << endl;
+    os << "] " << std::endl;
 
    return os;
 }
@@ -406,7 +406,7 @@ nbox_t::operator char*()
 
         W_FORM(ss)("%d.%ld.%ld.%ld.%ld", dim, 
                 array[0], array[1], array[2], array[3]);
-        ss << ends;
+        ss << std::ends;
 
         return s;
 }

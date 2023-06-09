@@ -87,7 +87,7 @@ public:
     /// return const pointer to the storage area
     const uint1_t*        addr() const;
 
-    friend ostream&        operator<<(ostream&, const w_bitmap_t&);
+  friend std::ostream&        operator<<(std::ostream&, const w_bitmap_t&);
 private:
     uint1_t*             ptr;
     uint4_t            sz; // # bits

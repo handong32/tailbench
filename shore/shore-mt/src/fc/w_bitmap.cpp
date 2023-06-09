@@ -151,7 +151,7 @@ w_bitmap_t::num_set() const
     return count;
 }
 
-ostream& operator<<(ostream& o, const w_bitmap_t& obj)
+std::ostream& operator<<(std::ostream& o, const w_bitmap_t& obj)
 {
     for (register unsigned i = 0; i < obj.sz; i++)  {
     o << (obj.is_set(i) != 0);

@@ -149,7 +149,7 @@ public:
     }
 
 
-    ostream& operator<<(ostream &o);
+    std::ostream& operator<<(std::ostream &o);
     /// Return the number of entries/locations/attributes for this "row".
     int n() const { return N; }
 
@@ -225,7 +225,7 @@ public:
         return *_get_row(i);
     }
 
-    ostream& operator<<(ostream &o) const;
+    std::ostream& operator<<(std::ostream &o) const;
 
     /// Return number of rows filled.
     int            quant() const { return _rows_filled; }
