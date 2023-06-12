@@ -89,8 +89,8 @@ struct stid_t {
     bool operator!=(const stid_t& s) const;
     bool operator<(const stid_t& s) const;
 
-    friend ostream& operator<<(ostream&, const stid_t& s);
-    friend istream& operator>>(istream&, stid_t& s);
+    friend std::ostream& operator<<(std::ostream&, const stid_t& s);
+    friend std::istream& operator>>(std::istream&, stid_t& s);
 
     static const stid_t null;
     operator const void*() const;

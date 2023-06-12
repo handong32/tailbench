@@ -144,7 +144,7 @@ class w_stat_t
     friend class w_statistics_t;
     friend class w_stat_module_t;
     /* grot */
-    friend ostream    & operator<<(ostream &out, const w_statistics_t &s);
+    friend std::ostream    & operator<<(std::ostream &out, const w_statistics_t &s);
 
 protected:
     union {

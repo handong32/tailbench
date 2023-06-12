@@ -134,7 +134,7 @@ int SearchableHeap<T, Cmp>::Match(const T& t) const
     return -1; // none found
 }
 
-ostream &operator<<(ostream &o,
+std::ostream &operator<<(std::ostream &o,
             const SearchableHeap<pginfo_t, histoid_compare_t> &sh)
 {
     sh.Print(o);
@@ -1084,7 +1084,7 @@ histoid_t::bucket_change(
 
 
 
-ostream &histoid_t::print(ostream &o) const
+std::ostream &histoid_t::print(std::ostream &o) const
 {
     o << this;
     o  << " key=" << cmp.key
@@ -1097,13 +1097,13 @@ ostream &histoid_t::print(ostream &o) const
     return o;
 }
 
-ostream &operator<<(ostream&o, const histoid_t&h)
+std::ostream &operator<<(std::ostream&o, const histoid_t&h)
 {
     return h.print(o);
 }
 
 
-ostream &histoid_t::print_cache(ostream &o, bool locked)
+std::ostream &histoid_t::print_cache(std::ostream &o, bool locked)
 {
     if (initialized>0 && locked)
         htab_mutex.acquire_read();
@@ -1252,8 +1252,8 @@ histoid_update_t::~histoid_update_t()
     DBGTHRD(<<"end ~histoid_update_t "); 
 }
 
-ostream &
-operator<<(ostream&o, const histoid_update_t&u)
+std::ostream &
+operator<<(std::ostream&o, const histoid_update_t&u)
 {
     o << " info: page= " << u._info.page() << " space=" << u._info.space();
     o << " found in table: " << u._found_in_table;

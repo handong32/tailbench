@@ -181,8 +181,8 @@ w_rc_t    sdisk_t::pread(void *buf, int size, fileoff_t pos,
         if (newpos != pos) {
             es = seek(was, SEEK_AT_SET, newpos);
             if (es.is_error())
-                cerr << "Warning: pread reposition failed!"
-                    << endl << e << endl;
+                std::cerr << "Warning: pread reposition failed!"
+                    << std::endl << e << std::endl;
             return RC(stSHORTSEEK);
         }
     }
@@ -192,8 +192,8 @@ w_rc_t    sdisk_t::pread(void *buf, int size, fileoff_t pos,
     es = seek(was, SEEK_AT_SET, newpos);
     /* XXX should a reposition error make the I/O fail? */
     if (es.is_error() || newpos != was)
-        cerr << "Warning: pread reposition failed!"
-            << endl << e << endl;
+        std::cerr << "Warning: pread reposition failed!"
+            << std::endl << e << std::endl;
 
     transfered = n;
 
@@ -219,8 +219,8 @@ w_rc_t    sdisk_t::pwrite(const void *buf, int size, fileoff_t pos,
         if (newpos != pos) {
             es = seek(was, SEEK_AT_SET, newpos);
             if (es.is_error())
-                cerr << "Warning: pwrite reposition failed!"
-                    << endl << e << endl;
+                std::cerr << "Warning: pwrite reposition failed!"
+                    << std::endl << e << std::endl;
             return RC(stSHORTSEEK);
         }
     }
@@ -230,8 +230,8 @@ w_rc_t    sdisk_t::pwrite(const void *buf, int size, fileoff_t pos,
     es = seek(was, SEEK_AT_SET, newpos);
     /* XXX should a reposition error make the I/O fail? */
     if (es.is_error() || newpos != was)
-        cerr << "Warning: pwrite reposition failed!"
-            << endl << e << endl;
+        std::cerr << "Warning: pwrite reposition failed!"
+            << std::endl << e << std::endl;
 
     transfered = n;
 

@@ -93,8 +93,8 @@ struct lvid_t {
                         {return (low != s.low) || (high != s.high);}
 
     // in lid_t.cpp:
-    friend ostream& operator<<(ostream&, const lvid_t&);
-    friend istream& operator>>(istream&, lvid_t&);
+    friend std::ostream& operator<<(std::ostream&, const lvid_t&);
+    friend std::istream& operator>>(std::istream&, lvid_t&);
 
     // defined in lid_t.cpp
     static const lvid_t null;

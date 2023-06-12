@@ -434,10 +434,10 @@ rc_t ss_m::setup_options(option_group_t* options)
 rc_t ss_m::_set_option_logsize(
         option_t* opt, 
         const char* value, 
-        ostream* _err_stream
+        std::ostream* _err_stream
 )
 {
-    ostream* err_stream = _err_stream;
+    std::ostream* err_stream = _err_stream;
 
     if (err_stream == NULL) {
         err_stream = &cerr;
@@ -522,7 +522,7 @@ rc_t ss_m::_set_option_logsize(
     return RCOK;
 }
 
-rc_t ss_m::_set_option_lock_escalate_to_page(option_t* opt, const char* value, ostream* err_stream)
+rc_t ss_m::_set_option_lock_escalate_to_page(option_t* opt, const char* value, std::ostream* err_stream)
 {
     w_assert3(opt == _lockEscalateToPageThreshold);
     W_DO(option_t::set_value_long(opt, value, err_stream));
@@ -540,7 +540,7 @@ rc_t ss_m::_set_option_lock_escalate_to_page(option_t* opt, const char* value, o
     return RCOK;
 }
 
-rc_t ss_m::_set_option_lock_escalate_to_store(option_t* opt, const char* value, ostream* err_stream)
+rc_t ss_m::_set_option_lock_escalate_to_store(option_t* opt, const char* value, std::ostream* err_stream)
 {
     w_assert3(opt == _lockEscalateToStoreThreshold);
     W_DO(option_t::set_value_long(opt, value, err_stream));
@@ -556,7 +556,7 @@ rc_t ss_m::_set_option_lock_escalate_to_store(option_t* opt, const char* value, 
     return RCOK;
 }
 
-rc_t ss_m::_set_option_lock_escalate_to_volume(option_t* opt, const char* value, ostream* err_stream)
+rc_t ss_m::_set_option_lock_escalate_to_volume(option_t* opt, const char* value, std::ostream* err_stream)
 {
     w_assert3(opt == _lockEscalateToVolumeThreshold);
     W_DO(option_t::set_value_long(opt, value, err_stream));

@@ -46,12 +46,12 @@ Rome Research Laboratory Contract No. F30602-97-2-0247.
 
 const stid_t stid_t::null;
 
-ostream& operator<<(ostream& o, const stid_t& stid)
+std::ostream& operator<<(std::ostream& o, const stid_t& stid)
 {
     return o << "s(" << stid.vol << '.' << stid.store << ')';
 }
 
-istream& operator>>(istream& i, stid_t& stid)
+std::istream& operator>>(std::istream& i, stid_t& stid)
 {
     char c[5];
     memset(c, '\0', sizeof(c));
@@ -69,7 +69,7 @@ istream& operator>>(istream& i, stid_t& stid)
     c[4] = '\0';
     if (i) {
         if (strcmp(c, "s(.)")) {
-            i.clear(ios::badbit|i.rdstate());  // error
+            i.clear(std::ios::badbit|i.rdstate());  // error
         }
     }
     return i;

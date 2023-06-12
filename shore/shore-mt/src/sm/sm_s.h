@@ -87,8 +87,8 @@ public:
     fill2        filler; // because vol is 2 bytes & ext is 4
     extnum_t     ext;
 
-    friend ostream& operator<<(ostream&, const extid_t& x);
-    friend istream& operator>>(istream&, extid_t &x); 
+    friend std::ostream& operator<<(std::ostream&, const extid_t& x);
+    friend std::istream& operator>>(std::istream&, extid_t &x); 
 };
 
 #define LPID_T
@@ -117,8 +117,8 @@ public:
     bool operator<=(const lpid_t& p) const;
     bool operator>(const lpid_t& p) const;
     bool operator>=(const lpid_t& p) const;
-    friend ostream& operator<<(ostream&, const lpid_t& p);
-    friend istream& operator>>(istream&, lpid_t& p);
+    friend std::ostream& operator<<(std::ostream&, const lpid_t& p);
+    friend std::istream& operator>>(std::istream&, lpid_t& p);
 
     static const lpid_t bof;
     static const lpid_t eof;
@@ -150,8 +150,8 @@ public:
     shrid_t();
     shrid_t(const rid_t& r);
     shrid_t(shpid_t p, snum_t st, slotid_t sl) : page(p), store(st), slot(sl) {}
-    friend ostream& operator<<(ostream&, const shrid_t& s);
-    friend istream& operator>>(istream&, shrid_t& s);
+    friend std::ostream& operator<<(std::ostream&, const shrid_t& s);
+    friend std::istream& operator>>(std::istream&, shrid_t& s);
 };
 
 
@@ -184,8 +184,8 @@ public:
     bool operator!=(const rid_t& r) const;
     bool operator<(const rid_t& r) const;
     
-    friend ostream& operator<<(ostream&, const rid_t& s);
-    friend istream& operator>>(istream&, rid_t& s);
+    friend std::ostream& operator<<(std::ostream&, const rid_t& s);
+    friend std::istream& operator>>(std::istream&, rid_t& s);
 
     static const rid_t null;
 };
@@ -233,12 +233,12 @@ struct key_type_s {
 #define null_lsn (lsn_t::null)
 #define max_lsn  (lsn_t::max)
 
-inline ostream& operator<<(ostream& o, const lsn_t& l)
+inline std::ostream& operator<<(std::ostream& o, const lsn_t& l)
 {
     return o << l.file() << '.' << l.rba();
 }
 
-inline istream& operator>>(istream& i, lsn_t& l)
+inline std::istream& operator>>(std::istream& i, lsn_t& l)
 {
     sm_diskaddr_t d;
     char c;

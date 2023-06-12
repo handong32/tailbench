@@ -178,12 +178,12 @@ private:
 
 #include <w_stream.h>
 
-inline ostream& operator<<(ostream& o, const tid_t& t)
+inline std::ostream& operator<<(std::ostream& o, const tid_t& t)
 {
     return o << t.get_hi() << '.' << t.get_lo();
 }
 
-inline istream& operator>>(istream& i, tid_t& t)
+inline std::istream& operator>>(std::istream& i, tid_t& t)
 {
     char ch;
     uint4_t h, l;

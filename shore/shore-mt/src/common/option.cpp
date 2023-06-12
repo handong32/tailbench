@@ -814,7 +814,7 @@ void option_stream_scan_t::setLabel(const char *newLabel)
 
 w_rc_t option_stream_scan_t::scan(
         bool overRide, 
-        ostream& err_stream, 
+        std::ostream& err_stream, 
         bool exact,
         bool mismatch_ok
 )
@@ -834,7 +834,7 @@ w_rc_t option_stream_scan_t::scan(
     DBG(<<"scanning options stream " << _label);
 
     w_rc_t rc;
-    while ( !rc.is_error() && (_input.getline(_line, _maxLineLen) != NULL) ) {
+    while ( !rc.is_error() && (_input.getline(_line, _maxLineLen)) ) {
             _lineNum++;
         DBG(<<"scan line " << _lineNum);
         
@@ -1009,7 +1009,7 @@ option_file_scan_t::~option_file_scan_t()
 
 w_rc_t option_file_scan_t::scan(
         bool overRide, 
-        ostream& err_stream, 
+        std::ostream& err_stream, 
         bool exact,
         bool mismatch_ok
 )
@@ -1018,7 +1018,7 @@ w_rc_t option_file_scan_t::scan(
 
     DBG(<<"scanning options file " << _fileName);
 
-    ifstream f(_fileName);
+    std::ifstream f(_fileName);
 
     if (!f) {
         e = RC(fcOS);    

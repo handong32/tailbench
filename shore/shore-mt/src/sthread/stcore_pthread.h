@@ -65,7 +65,7 @@ typedef struct sthread_core_t {
 } sthread_core_t;
 /**\endcond skip */
 
-ostream &operator<<(ostream &o, const sthread_core_t &core);
+std::ostream &operator<<(std::ostream &o, const sthread_core_t &core);
 
 extern int  sthread_core_init(sthread_core_t* t,
                               void (*proc)(void *), void *arg,

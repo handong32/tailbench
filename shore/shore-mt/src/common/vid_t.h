@@ -74,8 +74,8 @@ struct vid_t {
     uint2_t        vol;
 
     static const vid_t null;
-    friend inline ostream& operator<<(ostream&, const vid_t& v);
-    friend inline istream& operator>>(istream&, vid_t& v);
+    friend inline std::ostream& operator<<(std::ostream&, const vid_t& v);
+    friend inline std::istream& operator>>(std::istream&, vid_t& v);
     friend bool operator==(const vid_t& v1, const vid_t& v2)  {
         return v1.vol == v2.vol;
     }
@@ -87,12 +87,12 @@ struct vid_t {
     }
 };
 
-inline ostream& operator<<(ostream& o, const vid_t& v)
+inline std::ostream& operator<<(std::ostream& o, const vid_t& v)
 {
     return o << v.vol;
 }
  
-inline istream& operator>>(istream& i, vid_t& v)
+inline std::istream& operator>>(std::istream& i, vid_t& v)
 {
     return i >> v.vol;
 }

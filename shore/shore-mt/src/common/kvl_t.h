@@ -84,8 +84,8 @@ struct kvl_t {
         const cvec_t&         v2);
     bool operator==(const kvl_t& k) const;
     bool operator!=(const kvl_t& k) const;
-    friend ostream& operator<<(ostream&, const kvl_t& k);
-    friend istream& operator>>(istream&, kvl_t& k);
+    friend std::ostream& operator<<(std::ostream&, const kvl_t& k);
+    friend std::istream& operator>>(std::istream&, kvl_t& k);
 };
 
 inline NORET

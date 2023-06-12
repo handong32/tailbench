@@ -53,7 +53,7 @@ Rome Research Laboratory Contract No. F30602-97-2-0247.
 
 template <int LEN> class opaque_quantity;
 #ifndef W_NO_TEMPLATE_FORWARD_DECLS
-template <int LEN> ostream &operator<<(ostream &o,
+template <int LEN> std::ostream &operator<<(std::ostream &o,
                        const opaque_quantity<LEN> &r);
 template <int LEN> bool operator==(const opaque_quantity<LEN> &l,
                    const opaque_quantity<LEN> &r);
@@ -99,9 +99,9 @@ private:
         const opaque_quantity<LEN>    &l,
         const opaque_quantity<LEN>    &r); 
 
-    friend ostream & 
+    friend std::ostream & 
     operator<< <LEN> (
-        ostream &o, 
+        std::ostream &o, 
         const opaque_quantity<LEN>    &b);
 
     opaque_quantity<LEN>    &
@@ -208,7 +208,7 @@ private:
         return (((ptrdiff_t)(&_length) & (sizeof(_length) - 1)) == 0);
     }
 
-    ostream        &print(ostream & o) const {
+    std::ostream        &print(std::ostream & o) const {
         o << "opaque[" << length() << "]" ;
 
         uint4_t print_length = length();
@@ -240,8 +240,8 @@ bool operator==(const opaque_quantity<LEN> &a,
 }
 
 template <int LEN>
-ostream & 
-operator<<(ostream &o, const opaque_quantity<LEN>    &b) 
+std::ostream & 
+operator<<(std::ostream &o, const opaque_quantity<LEN>    &b) 
 {
     return b.print(o);
 }

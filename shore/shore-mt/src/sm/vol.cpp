@@ -1420,7 +1420,7 @@ vol_t::alloc_pages_in_ext(
                 if(may_realloc) {
                     // btree case: logically logs page changes
                     w_rc_t rc = vol_io_shared::io_lock_force(pids[i], EX, 
-                        t_instant, WAIT_IMMEDIATE);
+							     t_instant, WAIT_IMMEDIATE, 0, 0, 0);
                     if(rc.is_error()){
                         // Skip this page if other tx has lock on it
                         m = EX;
@@ -1454,7 +1454,7 @@ vol_t::alloc_pages_in_ext(
                     w_rc_t rc = vol_io_shared::io_lock_force(
                                             pids[i], desired_lock_mode, 
                                             t_long, WAIT_IMMEDIATE,
-                                            &m);
+                                            &m, 0 ,0);
                     if(rc.is_error()){
                         // Skip this page if other tx has lock on it
                         DBG(<<"skipping: prior mode=" << int(m)
@@ -1708,7 +1708,7 @@ vol_t::free_page(const lpid_t& pid, bool check_membership)
     /* NB: force required -- see comments in io_lock_force */
     //jk TODO if multiple xct were acting on page, it's possible we can't
     // get this lock, in that case we should just return and not free the page
-    W_DO(vol_io_shared::io_lock_force(pid, EX, t_long, WAIT_IMMEDIATE));
+    W_DO(vol_io_shared::io_lock_force(pid, EX, t_long, WAIT_IMMEDIATE, 0, 0, 0));
 
     if(check_membership) {
         // check the extent link for this page: is the bit
@@ -2324,7 +2324,7 @@ vol_t::find_free_store(snum_t& snum)
      * (since the volume is locked) and then returning OUTOFSPACE
      */
     W_DO( vol_io_shared::io_lock_force(
-                _vid, IX, t_long, WAIT_SPECIFIED_BY_XCT) );
+				       _vid, IX, t_long, WAIT_SPECIFIED_BY_XCT, 0, 0, 0) );
 
     for (uint i = 1; i < _num_exts; i++)  {
         const stnode_t *_stnode;

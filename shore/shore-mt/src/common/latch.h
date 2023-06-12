@@ -75,7 +75,7 @@ enum latch_mode_t { LATCH_NL = 0, LATCH_SH = 1, LATCH_EX = 2 };
 
 
 class latch_t;
-extern ostream &operator<<(ostream &, const latch_t &);
+extern std::ostream &operator<<(std::ostream &, const latch_t &);
 
 /** \brief Indicates a latch is held by this thread.
  *
@@ -138,7 +138,7 @@ public:
               _mode == other._mode && _count == other._count;    
     }
 
-    void print(ostream &o) const;
+    void print(std::ostream &o) const;
 };
 
 #include <iosfwd>
@@ -170,7 +170,7 @@ public:
     NORET                   ~latch_t();
 
     // Dump latch info to the ostream. Not thread-safe. 
-    ostream&                print(ostream &) const;
+    std::ostream&                print(std::ostream &) const;
 
     // Return a unique id for the latch.For debugging.
     inline const void *     id() const { return &_lock; } 

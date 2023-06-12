@@ -90,7 +90,7 @@ public:
     }
 };
 
-extern ostream &operator<<(ostream &, const sthread_stats &stats);
+extern std::ostream &operator<<(std::ostream &, const sthread_stats &stats);
 
 extern class sthread_stats SthreadStats;
 

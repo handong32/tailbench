@@ -105,7 +105,7 @@ devid_t::devid_t(const char* path)
     }
 }
 
-ostream& operator<<(ostream& o, const devid_t& d)
+std::ostream& operator<<(std::ostream& o, const devid_t& d)
 {
     return o << d.dev << "." << d.id;
 }

@@ -679,7 +679,7 @@ latch_t::_downgrade(latch_holder_t* me)
 #endif
 }
 
-void latch_holder_t::print(ostream &o) const
+void latch_holder_t::print(std::ostream &o) const
 {
     o << "Holder " << latch_t::latch_mode_str[int(_mode)] 
         << " cnt=" << _count 
@@ -712,7 +712,7 @@ latch_t::is_mine() const {
 // NOTE: this is not safe, but it can be used by unit tests
 // and for debugging
 #include <w_stream.h>
-ostream &latch_t::print(ostream &out) const
+std::ostream &latch_t::print(std::ostream &out) const
 {
     out <<    "latch(" << this << "): " << name();
     out << " held in " << latch_mode_str[int(mode())] << " mode ";
@@ -723,7 +723,7 @@ ostream &latch_t::print(ostream &out) const
 }
 
 
-ostream& operator<<(ostream& out, const latch_t& l)
+std::ostream& operator<<(std::ostream& out, const latch_t& l)
 {
     return l.print(out);
 }

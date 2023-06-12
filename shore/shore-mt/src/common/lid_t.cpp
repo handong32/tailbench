@@ -46,7 +46,7 @@ Rome Research Laboratory Contract No. F30602-97-2-0247.
 
 const lvid_t    lvid_t::null;            
 
-ostream& operator<<(ostream& o, const lvid_t& lvid)
+std::ostream& operator<<(std::ostream& o, const lvid_t& lvid)
 {
     const u_char* p = (const u_char*) &lvid.high;
     //(char*)inet_ntoa(lvid.net_addr)
@@ -57,7 +57,7 @@ ostream& operator<<(ostream& o, const lvid_t& lvid)
              <<        lvid.low;
 }
 
-istream& operator>>(istream& is, lvid_t& lvid)
+std::istream& operator>>(std::istream& is, lvid_t& lvid)
 {
     is.clear();
     w_base_t::uint4_t i;
@@ -92,7 +92,7 @@ istream& operator>>(istream& is, lvid_t& lvid)
         // we had a.b:l
         // we had a:l
         if(i!=parts) {
-            is.clear(ios::badbit);
+            is.clear(std::ios::badbit);
         } else {
             is >> lvid.low;
         }
@@ -101,7 +101,7 @@ istream& operator>>(istream& is, lvid_t& lvid)
         // a.b
         // a.b.c
         // a.b.c.d
-        is.clear(ios::badbit);
+        is.clear(std::ios::badbit);
     }
 
     ((char*)&lvid.high)[0] = temp[0];

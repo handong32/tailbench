@@ -86,9 +86,9 @@ vec_t&                vec_t::neg_inf = *(vec_t*) &cvec_t::neg_inf;
 
 cvec_t::cvec_t(const cvec_t& /*v*/)
 {
-    cerr << "cvec_t: disabled member called" << endl;
-    cerr << "failed at \"" << __FILE__ << ":" << __LINE__ 
-         << "\"" << endl;
+    std::cerr << "cvec_t: disabled member called" << std::endl;
+    std::cerr << "failed at \"" << __FILE__ << ":" << __LINE__ 
+         << "\"" << std::endl;
     abort();
 }
 
@@ -547,7 +547,7 @@ void cvec_t::_grow(int total_cnt)
 
 #include <cctype>
 
-ostream& operator<<(ostream& o, const cvec_t& v)
+std::ostream& operator<<(std::ostream& o, const cvec_t& v)
 {
     char        *p;
     u_char         c, oldc;
@@ -585,12 +585,12 @@ ostream& operator<<(ostream& o, const cvec_t& v)
                         o << c ;
                     } else {
                         // high bit set: print its octal value
-                        o << "\\0" << oct << c << dec ;
+                        o << "\\0" << std::oct << c << std::dec ;
                     }
                 } else if(c=='\0') {
                     o << "\\0" ;
                 } else {
-                    o << "\\0" << oct << (unsigned int)c << dec ;
+                    o << "\\0" << std::oct << (unsigned int)c << std::dec ;
                 }
             }
             oldc = c;
@@ -607,7 +607,7 @@ ostream& operator<<(ostream& o, const cvec_t& v)
     return o;
 }
 
-istream& operator>>(istream& is, cvec_t& v)
+std::istream& operator>>(std::istream& is, cvec_t& v)
 {
     char        c=' ';
     size_t      len=0;
@@ -628,7 +628,7 @@ istream& operator>>(istream& is, cvec_t& v)
 
     state = starting;
     while(state != done) {
-        is >> ws; // swallow whitespace
+        is >> std::ws; // swallow whitespace
         c = is.peek();
         /*
         cerr << __LINE__ << ":" 
@@ -655,13 +655,13 @@ istream& operator>>(istream& is, cvec_t& v)
                 break;
 
             case getting_nparts:
-                is >> ws; // swallow whitespace
+                is >> std::ws; // swallow whitespace
                 if(is.bad()) { err ++; }
                 else state = got_nparts;
                 break;
 
             case got_nparts:
-                is >> ws; // swallow whitespace
+                is >> std::ws; // swallow whitespace
                 if(is.peek() == leftbracket) {
                     state = getting_pair;
                 } else {
@@ -670,10 +670,10 @@ istream& operator>>(istream& is, cvec_t& v)
                 break;
 
             case getting_pair:
-                is >> ws; 
+                is >> std::ws; 
                 is >> c;
                 if( c == leftbracket ) {
-                    is >> ws; // swallow whitespace
+                    is >> std::ws; // swallow whitespace
                     is >> len; // extract a len
                     if(is.bad()) { 
                         err ++;
@@ -735,16 +735,16 @@ istream& operator>>(istream& is, cvec_t& v)
         if(err >0) {
 #if defined(__SUNPRO_CC)
             // XXX kludgy version of set, but it works
-            is.clear(is.rdstate() | ios::badbit);
+            is.clear(is.rdstate() | std::ios::badbit);
 #elif defined(__GNUC__)
 #if W_GCC_THIS_VER >= W_GCC_VER(3,0)
             /* XXX gcc-3.2 */
-            is.setstate(ios::badbit);
+            is.setstate(std::ios::badbit);
 #else
-            is.set(ios::badbit);
+            is.set(std::ios::badbit);
 #endif
 #else
-            is.set(ios::badbit);
+            is.set(std::ios::badbit);
 #endif
 
             state = done;

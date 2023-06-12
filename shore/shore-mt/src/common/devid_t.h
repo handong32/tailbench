@@ -63,7 +63,7 @@ struct devid_t {
     }
 
     bool operator!=(const devid_t& d) const {return !(*this==d);}
-    friend ostream& operator<<(ostream&, const devid_t& d);
+  friend std::ostream& operator<<(std::ostream&, const devid_t& d);
 
     static const devid_t null;
 };

@@ -163,7 +163,7 @@ int sthread_core_init(sthread_core_t *core,
             // say it's hit the maximum # threads because that depends
             // on a variety of resources, and in any case, we don't
             // know how much memory will be required for another thread.
-            cerr << "pthread_create():" << endl << e << endl;
+            std::cerr << "pthread_create():" << std::endl << e << std::endl;
             return -1;
         }
         core->creator = pthread_self();
@@ -222,9 +222,9 @@ void sthread_core_exit(sthread_core_t* core, bool &joined)
                    << " Unexpected result from pthread_join: "
                    << msg << " core is : ";
 
-               o << *core << endl;
+               o << *core << std::endl;
 
-               W_FATAL_MSG(fcINTERNAL,  << o.c_str() << endl);
+               W_FATAL_MSG(fcINTERNAL,  << o.c_str() << std::endl);
             }
         }
         /* And the thread is gone */
@@ -232,7 +232,7 @@ void sthread_core_exit(sthread_core_t* core, bool &joined)
     joined = true;
 }
 
-ostream &operator<<(ostream &o, const sthread_core_t &core)
+std::ostream &operator<<(std::ostream &o, const sthread_core_t &core)
 {
     o << "core: ";
     if (core.stack_size == 0)

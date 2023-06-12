@@ -214,8 +214,8 @@ public:
     friend inline bool operator==(const cvec_t& v1, const cvec_t& v2);
     friend inline bool operator!=(const cvec_t& v1, const cvec_t& v2);
 
-    friend ostream& operator<<(ostream&, const cvec_t& v);
-    friend istream& operator>>(istream&, cvec_t& v);
+    friend std::ostream& operator<<(std::ostream&, const cvec_t& v);
+    friend std::istream& operator>>(std::istream&, cvec_t& v);
 
     static cvec_t pos_inf;
     static cvec_t neg_inf;
@@ -328,8 +328,8 @@ public:
  private:
     // disabled
     vec_t(const vec_t&) : cvec_t()  {
-      cerr << "vec_t: disabled member called" << endl;
-      cerr << "failed at \"" << __FILE__ << ":" << __LINE__ << "\"" << endl;
+      std::cerr << "vec_t: disabled member called" << std::endl;
+      std::cerr << "failed at \"" << __FILE__ << ":" << __LINE__ << "\"" << std::endl;
       W_FATAL (fcINTERNAL);
     }
  private:

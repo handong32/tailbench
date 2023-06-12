@@ -133,7 +133,7 @@ public:
      *
      * A value of NULL indicates "please un-set the value".
     */
-    w_rc_t        set_value(const char* value, bool overRide, ostream* err_stream);
+    w_rc_t        set_value(const char* value, bool overRide, std::ostream* err_stream);
 
     /// Get current assigned value.
     const char*        value()         { return _value;}
@@ -156,14 +156,14 @@ public:
 
 
     // Standard call back functions for basic types
-    static w_rc_t set_value_bool(option_t* opt, const char* value, ostream* err_stream);
-    static w_rc_t set_value_int4(option_t* opt, const char* value, ostream* err_stream);
-    static w_rc_t set_value_int8(option_t* opt, const char* value, ostream* err_stream);
-    static w_rc_t set_value_charstr(option_t* opt, const char* value, ostream* err_stream);
+    static w_rc_t set_value_bool(option_t* opt, const char* value, std::ostream* err_stream);
+    static w_rc_t set_value_int4(option_t* opt, const char* value, std::ostream* err_stream);
+    static w_rc_t set_value_int8(option_t* opt, const char* value, std::ostream* err_stream);
+    static w_rc_t set_value_charstr(option_t* opt, const char* value, std::ostream* err_stream);
 
     /* Backwards compatability */
-    static w_rc_t set_value_long(option_t* opt, const char* value, ostream* err_stream);
-    static w_rc_t set_value_long_long(option_t* opt, const char* value, ostream* err_stream);
+    static w_rc_t set_value_long(option_t* opt, const char* value, std::ostream* err_stream);
+    static w_rc_t set_value_long_long(option_t* opt, const char* value, std::ostream* err_stream);
 
     // function to convert a string to a bool (similar to strtol()).
     // first character is checked for t,T,y,Y for true
@@ -175,7 +175,7 @@ public:
 private:
     // Type for "call back" functions called when a value is set
     typedef w_rc_t (*OptionSetFunc)(option_t*, const char * value,
-                        ostream* err_stream);
+                        std::ostream* err_stream);
 
     // These functions are called by option_group_t::add_option().
     NORET        option_t();
@@ -184,7 +184,7 @@ private:
     w_rc_t        init(const char* name, const char* newPoss,
                      const char* default_value, const char* description,
                      bool required, OptionSetFunc callBack,
-                     ostream *err_stream);
+                     std::ostream *err_stream);
 
     const char*        _name;                        // name of the option
     const char*        _possible_values;        // example possible values
@@ -266,7 +266,7 @@ public:
                        bool required,
                        option_t::OptionSetFunc set_func,
                        option_t*& new_opt,
-                       ostream *err_stream = &cerr
+                       std::ostream *err_stream = &std::cerr
                        );
 
     /**\brief Look up an option by name.  
@@ -310,12 +310,12 @@ public:
      */
     w_rc_t        set_value(const char* name, bool exact,
                           const char* value, bool overRide,
-                          ostream* err_stream);
+                          std::ostream* err_stream);
 
     /// Print the descriptive information to the given stream.
-    void        print_usage(bool longForm, ostream& err_stream);
+    void        print_usage(bool longForm, std::ostream& err_stream);
     /// Print the descriptive information to the given stream.
-    void        print_values(bool longForm, ostream& err_stream);
+    void        print_values(bool longForm, std::ostream& err_stream);
 
     /**\brief Check that all required options are set.
      *
@@ -323,7 +323,7 @@ public:
      * Return OPTERR_NotSet if any are not.
      * Print information about each unset option to err_stream
      */
-    w_rc_t         check_required(ostream* err_stream);
+    w_rc_t         check_required(std::ostream* err_stream);
 
     /**\brief Search the command line for options, set, remove from argv,argc.
      * \details
@@ -342,7 +342,7 @@ public:
     w_rc_t         parse_command_line(const char** argv, 
                     int& argc, 
                     size_t min_len, 
-                    ostream* err_stream);
+                    std::ostream* err_stream);
 
     /// Return a list of the options in the group.
     w_list_t<option_t,unsafe_list_dummy_lock_t>& option_list() {return _options;}
@@ -376,7 +376,7 @@ private:
  * This is used by option_file_scan_t.
  */
 class option_stream_scan_t : public w_base_t {
-        istream                &_input;
+        std::istream                &_input;
         option_group_t        *_optList;
         char                  *_line;
         const char            *_label;
@@ -387,7 +387,7 @@ class option_stream_scan_t : public w_base_t {
         static const char *default_label;
 
 public:
-        option_stream_scan_t(istream &is, option_group_t *option_group);
+        option_stream_scan_t(std::istream &is, option_group_t *option_group);
         ~option_stream_scan_t();
 
         // Allow a label to be associated with the stream, e.g., file name.
@@ -405,7 +405,7 @@ public:
          * @param[in] mismatch_ok  If true, bad option names will be ignored
          *                      and will not cause failure of the entire scan.
          */
-        w_rc_t         scan(bool over_ride, ostream& err_stream, 
+        w_rc_t         scan(bool over_ride, std::ostream& err_stream, 
                              bool exact=false, bool mismatch_ok=false);
 
 };
@@ -444,7 +444,7 @@ public:
          * @param[in] mismatch_ok  If true, bad option names will be ignored
          *                      and will not cause failure of the entire scan.
          */
-    w_rc_t         scan(bool over_ride, ostream& err_stream, 
+    w_rc_t         scan(bool over_ride, std::ostream& err_stream, 
         bool exact=false, bool mismatch_ok=false);
 
 protected:

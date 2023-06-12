@@ -717,16 +717,16 @@ public:
                             const void *           id = 0);
     static w_rc_t::errcode_t       block(int4_t  timeout = WAIT_FOREVER);
 
-    virtual void        _dump(ostream &) const; // to be over-ridden
+    virtual void        _dump(std::ostream &) const; // to be over-ridden
 
     // these traverse all threads
-    static void       dumpall(const char *, ostream &);
-    static void       dumpall(ostream &);
+    static void       dumpall(const char *, std::ostream &);
+    static void       dumpall(std::ostream &);
 
-    static void       dump_io(ostream &);
-    static void       dump_event(ostream &);
+    static void       dump_io(std::ostream &);
+    static void       dump_event(std::ostream &);
 
-    static void       dump_stats(ostream &);
+    static void       dump_stats(std::ostream &);
     static void       reset_stats();
 
     /// Collect a row of a virtual table. One row per thread.
@@ -856,7 +856,7 @@ public:
 
     // give up the processor
     static void        yield();
-    ostream            &print(ostream &) const;
+    std::ostream            &print(std::ostream &) const;
 
     // anyone can wait and delete a thread
     virtual            ~sthread_t();
@@ -943,9 +943,9 @@ private:
     static char *        _disk_buffer;
 };
 
-extern ostream &operator<<(ostream &o, const sthread_t &t);
+extern std::ostream &operator<<(std::ostream &o, const sthread_t &t);
 
-void print_timeout(ostream& o, const sthread_base_t::timeout_in_ms timeout);
+void print_timeout(std::ostream& o, const sthread_base_t::timeout_in_ms timeout);
 
 
 /**\cond skip */
@@ -1141,7 +1141,7 @@ sthread_t::status() const
        S << "Unexpected result from " << #x << " " << res << " "; \
        char buf[100]; \
        (void) strerror_r(res, &buf[0], sizeof(buf)); \
-       S << buf << ends; \
+       S << buf << std::ends; \
        W_FATAL_MSG(fcINTERNAL, << S.c_str()); \
     }  \
 }
