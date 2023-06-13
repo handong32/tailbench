@@ -8,7 +8,8 @@ then
     # Build and install sphinxbase
     tar -xf sphinxbase-5prealpha.tar.gz
     cd sphinxbase-5prealpha
-    ./configure --prefix=${ROOTDIR}/sphinx-install
+    sed -i 's/$PYTHON -c "import distutils"/$PYTHON -W ignore -c "import distutils"/' configure
+    ./configure --prefix=${ROOTDIR}/sphinx-install    
     make clean all
     # make check
     make install
@@ -17,7 +18,8 @@ then
     # Build and install pocketsphinx
     tar -xf pocketsphinx-5prealpha.tar.gz
     cd pocketsphinx-5prealpha
-    ./configure --prefix=${ROOTDIR}/sphinx-install
+    sed -i 's/$PYTHON -c "import distutils"/$PYTHON -W ignore -c "import distutils"/' configure
+    ./configure --prefix=${ROOTDIR}/sphinx-install    
     make clean all
     # make check
     make install
