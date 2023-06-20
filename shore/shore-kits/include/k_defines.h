@@ -49,7 +49,8 @@ typedef queue_based_lock_t mcs_lock;
 
 #else // CFG_SHORE_MT
 
-#include <atomic.h>
+//#include <atomic.h>
+#include <stdatomic.h>
 
 #endif
 

@@ -135,6 +135,7 @@ DEFINE_EXCEPTION(BadAlloc);
 DEFINE_EXCEPTION(OutOfRange);
 DEFINE_EXCEPTION(FileException);
 DEFINE_EXCEPTION(BdbException);
+//DEFINE_EXCEPTION(ThreadException);
 
 #ifdef __GCC
 inline void unreachable() ATTRIBUTE(noreturn);

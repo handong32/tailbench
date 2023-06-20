@@ -43,7 +43,7 @@
 #include "util/randgen.h"
 
 
-DEFINE_EXCEPTION(ThreadException);
+//DEFINE_EXCEPTION(ThreadException);
 
 
 #ifdef __spacrv9
@@ -94,8 +94,10 @@ T* thread_join(pthread_t tid)
         T *v;
     } u;
 
-    if(pthread_join(tid, &u.p))
-        THROW(ThreadException);
+    if(pthread_join(tid, &u.p)) {
+	std::cout << "pthread_join error" << std::endl;
+    }
+    //THROW(ThreadException);
 
     return u.v;
 }

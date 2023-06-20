@@ -33,9 +33,9 @@
 
 // see http://src.opensolaris.org/source/xref/sfw/usr/src/cmd/gcc/gcc-3.4.3/gcc/testsuite/g++.old-deja/g++.abi/align.C
 // Origin: Alex Samuel <samuel (at) codesourcery.com>
-#define alignmentof(type) (alignment_of<type>())
+#define alignmentof(type) (alignment_of_f<type>())
 template<typename T>
-inline size_t alignment_of() {
+inline size_t alignment_of_f() {
     struct S {
 	char c;
 	T t;

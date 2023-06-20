@@ -175,7 +175,7 @@ struct key_wrapper_t
     string toString() {
         std::ostringstream out = string("");
         for (DataVecIt it=_key_v.begin(); it!=_key_v.end(); ++it)
-            out << out << (*it) << "|";
+	    out << (*it) << "|";
         return (out.str());
     }
 
